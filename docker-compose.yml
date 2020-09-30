@@ -1,0 +1,25 @@
+version : '3'
+services: 
+  roulette-api:
+    image: 'nodejs:alpine'
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: roulette-api
+    restart: unless-stopped
+    env_file: ./server/config/.env
+    environment:
+      REDIS_HOST: redis
+    ports:
+      - "33333:3333"
+    command:
+      sh -c 'npm i && npm start'
+  redis:
+    image: 'redis'
+    container_name: redis
+    restart: on-failure
+    ports:
+        - "63799:6379"
+    expose:
+      - "6379"
+    
