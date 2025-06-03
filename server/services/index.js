@@ -153,7 +153,7 @@ let calculateEarnings = (betValues) => {
     let valuesAllowed = betsAllowed.numbers.none.concat(betsAllowed.numbers.red, betsAllowed.numbers.black)
     if (betValues.bet.length == 1 && String(betValues.bet) === '0') {
         earnings = parseFloat(betValues.amount) / 2
-    } else if (betsAllowed.colors.includes(parseInt(betValues.bet))) {
+    } else if (betsAllowed.colors.includes(String(betValues.bet).toLowerCase())) {
         earnings = (parseInt(betValues.amount) * 2) + parseInt(betValues.amount)
     } else if (valuesAllowed.includes(parseInt(betValues.bet))) {
         earnings = (parseInt(betValues.amount) * 35) + parseInt(betValues.amount)
